@@ -21,16 +21,15 @@ Installation
 Content
 =======
 
-- <b>activerecord</b>: PHP ActiveRecord files. This is an ORM for PHP.
-- <b>css</b>: All stylesheet files. the file <i>css.css</i> is our own stylesheet file.
-- <b>images</b>: Various images of the project.
-- <b>img</b>
-- <b>js</b>
-- <b>scripts</b>
-- <b>setup</b>
-- <b>db.php</b>
-- <b>footer.php</b>
-- <b>group.php</b>
-- <b>head.php</b>
-- <b>header.php</b>
-- <b>index.php</b>
+- <b>activerecord</b>: PHP ActiveRecord files. This is an ORM for PHP
+- <b>css</b>: All stylesheet files. the file <i>css.css</i> is our own stylesheet file
+- <b>img</b>: Various images of the project
+- <b>js</b>: All JavaScript libraries used. The <i>js.js</i> file is our own javascript file
+- <b>scripts</b>: Here is the <i>parser.sh</i> file located
+- <b>setup</b>: Files for the installation and configuration of the database
+- <b>db.php</b>: PHP file for the database connection
+- <b>footer.php</b>: Footer for all pages of the website
+- <b>group.php</b>: Concrete group accounting page
+- <b>head.php</b>: All things included on the html head tag (Meta tags, javascripts and stylesheets)
+- <b>header.php</b>: Header for all pages of the website
+- <b>index.php</b>: Index and all group accounting page
