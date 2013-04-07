@@ -137,7 +137,7 @@
                         </table>
                         <br>
                         <center>
-                        	<small><i>* CPU Time and Wall Time values represented in hours</i></small>
+                        	<small><i>* CPU and Wall times values represented in hours</i></small>
                         </center>
 					</div>				
                 </center>
