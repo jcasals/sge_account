@@ -1,0 +1,294 @@
+body {
+    padding-bottom: 10px;
+    background: #F9F9F9;
+}
+
+* {
+    outline: 0;
+}
+
+a {
+    -webkit-transition: color 0.1s linear;
+    -moz-transition: color 0.1s linear;
+    -ms-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+    color: #05C;
+}
+
+a:hover {
+    color: #05C;
+}
+
+.cos {
+    margin-top: 35px;
+}
+
+.links, .alert-pic {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.links {
+    width: 385px;
+}
+
+.alert-pic {
+    width: 385px;
+}
+
+.links a:link {
+	font-weight:bold;
+}
+
+.taula {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 700px;
+}
+
+.supindex, .supindex:hover {
+	vertical-align: super;
+	color: #333;
+	text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin-top: 5px;
+}
+
+.label-info, .badge-info {
+	background-color: #05C;
+}
+
+.fliph {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+
+.fliph {
+	margin-right: 5px;
+}
+
+#showadv, #showmon {
+	margin-top: -10px;
+	margin-bottom: 15px;
+}
+
+#form {
+	margin-bottom: 10px;
+}
+/* NAVBAR */
+.navbar-fixed-top {
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    position: static;
+}
+
+.navbar .brand {
+    margin-left: 0px;
+    font-size: 24px;
+}
+
+.navbar-inner {
+    height:40px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dropdown {
+    cursor: pointer;
+}
+
+.dropdown-menu li {
+    color: #333;
+}
+
+.dropdown-menu li a:hover {
+    color: #333;
+    background: #EEE;
+}
+/* FI NAVBAR */
+
+/* TOOLTIP */
+.toolt, .toolt:hover {
+    color: #333;
+    text-decoration: none;
+	cursor: help;
+}
+
+.tooltip {
+	font-weight: normal;
+}
+/* FI TOOLTIP */
+
+/* DATATABLES */
+.taules td, .taules th {
+    text-align: center;
+}
+
+.taules thead th, .taules thead td {
+    padding-left: 15px;
+    padding-right: 15px;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+.table-bordered, .pagination ul li a, .taula td, .taula th {
+    border-color: #CCC;
+}
+
+.taules thead, .pagination ul li a:hover {
+    background-color: #EEE;
+}
+
+.dataTables_length, .dataTables_info {
+    margin-left: 21px;
+}
+
+table .row::before, table .row::after {
+    content: none;
+}
+
+.pagination {
+    width: 130%;
+    text-align: right;
+}
+
+.pagination .active a {
+    cursor: pointer;
+}
+
+.pagination a:hover, .pagination .active a {
+    background-color: transparent;
+}
+
+#ctable_wrapper .row, #ttable_wrapper .row, #t2table_wrapper .row, #t3table_wrapper .row, #dtable_wrapper .row, #d2table_wrapper .row, #d3table_wrapper .row {
+    display: none;
+}
+
+.taules tbody td, .taules tfoot th {
+    text-align: right;
+}
+
+.taules tbody .firstcol, .taules tfoot .firstcol {
+    text-align: center;
+}
+/* FI DATATABLES */
+
+/* INPUTS */
+INPUT[type='text'], INPUT[type='password'], INPUT[type='password'], INPUT[type='number'], textarea { /* Modifica l'estil dels camps de text de la web */
+    -webkit-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
+    -o-transition: border linear 0.2s, box-shadow linear 0.2s;
+    transition: border linear 0.2s, box-shadow linear 0.2s;
+}
+
+INPUT[type='text']:focus, INPUT[type='password']:focus, INPUT[type='password']:focus, INPUT[type='number']:focus, textarea:focus {
+    border-width: 1px;
+    border-style: Solid;
+    border-color: rgba(0, 85, 204, 0.7);
+}
+
+input:focus, textarea:focus {
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 85, 204, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 85, 204, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 85, 204, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-8 */
+}
+
+textarea {
+    resize: none;
+}
+
+select.input-mini {
+    width:65px;
+}
+
+select.input-small {
+    width:100px;
+}
+
+select.input-medium { 
+    width:160px;
+}
+
+select.input-large {
+    width:224px;
+}
+
+select[disabled] {
+    background-color: #CCC;
+}
+
+input[disabled] {
+    background-color: #E0E0E0;
+    border: 1px solid silver;
+}
+/* FI INPUTS */
+
+/* DATEPICKER */
+.ui-datepicker td .ui-state-default:hover {
+    background: #D9EDF7;
+    color: #05C;
+}
+
+.ui-datepicker td .ui-state-highlight {
+	color: #05C;
+    background: #D9EDF7;
+	border: #05C;
+}
+
+.ui-datepicker td .ui-state-active {
+    color: #D9EDF7;
+    background: #05C;
+}
+
+.ui-datepicker select {
+    height: auto;
+    outline: 0;
+}
+
+.ui-icon {
+	cursor: pointer;
+}
+
+input[readonly] {
+	background: #FFF;
+	color: #555;
+	cursor:pointer;
+}
+/* FI DATEPICKER */
+
+/* VALIDACIO FORMULARIS */
+label.error {
+    float: none;
+    color: red;
+    padding-left: .5em;
+    font-size: 12px;
+    font-style:italic;
+}
+
+input.error, select.error, textarea.error {
+    background-color: #fdc5c5;
+    border-color: rgba(255, 0, 0, 0.5);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+    outline: 0;
+    outline: thin dotted \9;
+}
+
+input.error:focus, textarea.error:focus {
+    border-color: rgba(255, 0, 0, 0.5) important!;
+}
+/* FI VALIDACIO FORMULARIS */
