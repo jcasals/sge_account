@@ -33,3 +33,8 @@ Content
 - <b>head.php</b>: All things included on the html head tag (Meta tags, javascripts and stylesheets)
 - <b>header.php</b>: Header for all pages of the website
 - <b>index.php</b>: Index and all group accounting page
+
+Important
+=========
+
+This is a beta version. Things may not work as expected or as you think it should work. For any doubt, advice or complaint, please tell me and I will try to fix it as soon as possible.
