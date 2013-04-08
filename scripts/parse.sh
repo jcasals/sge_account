@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG="../setup"
+SETUP="../setup"
 
 # MAC OS X
 if [[ `system_profiler SPSoftwareDataType | grep "System Version" | grep "OS X"` != "" ]]; then
