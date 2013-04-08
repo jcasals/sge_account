@@ -1,0 +1,8 @@
+# DB_Config
+db_user=
+db_pass=
+db_host=localhost
+db_name=sge_account
+
+# SGE_Config
+sge_logs=

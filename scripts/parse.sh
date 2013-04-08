@@ -2,16 +2,10 @@
 
 SETUP="../setup"
 
+# LOAD CONFIG PARAMETERS
+source $SETUP/config
+
 yesterday=`date '+%Y%m%d' -d "yesterday"`
-
-# SGE LOGS PARAMETERS
-SGE_LOGS=`cat $SETUP/config.ini | grep sge_logs | cut -d'=' -f2`
-
-# DATABASE PARAMETERS
-db_user=`cat $SETUP/config.ini | grep db_user | cut -d'=' -f2`
-db_pass=`cat $SETUP/config.ini | grep db_pass | cut -d'=' -f2`
-db_host=`cat $SETUP/config.ini | grep db_host | cut -d'=' -f2`
-db_name=`cat $SETUP/config.ini | grep db_name | cut -d'=' -f2`
 
 while read line; do
 	OLD_IFS="$IFS"
