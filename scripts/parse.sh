@@ -4,7 +4,7 @@ SETUP="../setup"
 
 # MAC OS X
 if [[ `system_profiler SPSoftwareDataType | grep "System Version" | grep "OS X"` != "" ]]; then
-	yesterday`date -v-1d +%Y%m%d`
+	yesterday=`date -v-1d +%Y%m%d`
 # OTHER (LINUX)
 else
 	yesterday=`date '+%Y%m%d' -d "yesterday"`
