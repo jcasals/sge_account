@@ -14,7 +14,7 @@ Installation
 ============
 
 1. Download the ZIP package and put the content in your html directory (i.e.: <i>/var/www/html</i>)
-2. Go to file <b>setup/config.ini</b> and specify your database parameters in the <i>DB_Config<i> section. If you are running this in localhost, you just have to specify your <i>db_user</i> and <i>db_pass</i> parameters. Remember to have this user created with permissions to create databases.
+2. Go to file <b>setup/config.ini</b> and specify your database parameters in the <i>DB_Config</i> section. If you are running this in localhost, you just have to specify your <i>db_user</i> and <i>db_pass</i> parameters. Remember to have this user created with permissions to create databases.
 3. Check your sge logs location and specify it in the <b>setup/config.ini</b> file in the <i>SGE_Config</i> section. This is important for the logs parser to be able to read it and insert the data in the database.
 4. If you are sure you put the correct values, run the <b>setup/setup.sh</b> script and the database will be created.
 5. Remember that you must add the parser <b>scripts/parser.sh</b> to your preferred cron system at <b>00:01AM</b> to have a good insertion of the data in the database.
