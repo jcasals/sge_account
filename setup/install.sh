@@ -2,11 +2,8 @@
 
 SETUP="."
 
-# CATCHING DATABASE PARAMETERS
-db_user=`cat $SETUP/config.ini | grep db_user | cut -d'=' -f2`
-db_pass=`cat $SETUP/config.ini | grep db_pass | cut -d'=' -f2`
-db_host=`cat $SETUP/config.ini | grep db_host | cut -d'=' -f2`
-db_name=`cat $SETUP/config.ini | grep db_name | cut -d'=' -f2`
+# LOAD CONFIG PARAMETERS
+source $SETUP/config
 
 if [[ $db_user != "" && $db_pass != "" && $db_host != "" && $db_name != "" ]]; then
 	echo ""
