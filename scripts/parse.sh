@@ -2,13 +2,7 @@
 
 SETUP="../setup"
 
-# MAC OS X
-if [[ `system_profiler SPSoftwareDataType | grep "System Version" | grep "OS X"` != "" ]]; then
-	yesterday=`date -v-1d +%Y%m%d`
-# OTHER (LINUX)
-else
-	yesterday=`date '+%Y%m%d' -d "yesterday"`
-fi
+yesterday=`date '+%Y%m%d' -d "yesterday"`
 
 # SGE LOGS PARAMETERS
 SGE_LOGS=`cat $SETUP/config.ini | grep sge_logs | cut -d'=' -f2`
