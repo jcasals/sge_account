@@ -5,7 +5,7 @@
     // change the connection settings to whatever is appropriate for your mysql server 
     ActiveRecord\Config::initialize(function($cfg)
     {
-		$conf = parse_ini_file('setup/config.ini');
+	$conf = parse_ini_file('setup/config.ini');
 		
         $cfg->set_model_directory('activerecord/models');
         try
