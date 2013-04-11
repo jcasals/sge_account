@@ -179,6 +179,11 @@ table .row::before, table .row::after {
 
 .taules tbody .firstcol, .taules tfoot .firstcol {
     text-align: center;
+    background-color: transparent !important;
+}
+
+.hovercol {
+	background-color: #EEE;
 }
 /* FI DATATABLES */
 

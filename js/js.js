@@ -8,22 +8,8 @@ $(document).ready(function() {
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "sPaginationType": "bootstrap",
     });
-
-	/*$("#from").datepicker({ 
-		dateFormat: "yy-mm-dd", 
-		//maxDate: '-1',
-		maxDate: '+0',
-		//minDate: new Date(2012,12 - 1,24),
-	});
-
-	$("#to").datepicker({ 
-		dateFormat: "yy-mm-dd", 
-		//maxDate: '-1',
-		maxDate: '+0',
-		//minDate: new Date(2013,1 - 1,21),
-	});*/
 	
-    $("#from").datepicker({
+    /*$("#from").datepicker({
 		defaultDate: "+1w",
 		dateFormat: "yy-mm-dd", 
 		onClose: function( selectedDate ) {
@@ -37,7 +23,34 @@ $(document).ready(function() {
 		onClose: function( selectedDate ) {
 			$("#from").datepicker( "option", "maxDate", selectedDate );
 		}
-    });
+    });*/
+    
+    var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+	 
+	var checkin = $('#from').datepicker({
+		format: "yyyy-mm-dd",
+		onRender: function(date) {
+			return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		}
+	}).on('changeDate', function(ev) {
+		if (ev.date.valueOf() > checkout.date.valueOf()) {
+			var newDate = new Date(ev.date)
+			newDate.setDate(newDate.getDate() + 1);
+			checkout.setValue(newDate);
+		}
+		checkin.hide();
+		//$('#to')[0].focus();
+	}).data('datepicker');
+	
+	var checkout = $('#to').datepicker({
+		format: "yyyy-mm-dd",
+	  	onRender: function(date) {
+	    	return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+	  	}
+	}).on('changeDate', function(ev) {
+		checkout.hide();
+	}).data('datepicker');
 
 	$(".toolt").tooltip();
 	
@@ -50,4 +63,29 @@ $(document).ready(function() {
 		$('#advanced').hide();
 		$('#monthly').show();
 	});
+	
+	/*$('td').hover(function() {
+	    var t = parseInt($(this).index()) + 1;
+	    $('td:nth-child(' + t + ')').addClass('hovercol');
+	},
+	
+	function() {
+	    var t = parseInt($(this).index()) + 1;
+	    $('td:nth-child(' + t + ')').removeClass('hovercol');
+	});
+	
+	$('#ctable td').click(function() {
+		if (!$(this).hasClass("firstcol"))
+		{
+			var c = parseInt($(this).index()) + 1;
+			
+			alert($('#ctable td:nth-child(1)').map(function(){
+			    return $(this).text();
+			}).get());
+			
+			alert($('#ctable td:nth-child(' + c + ')').map(function(){
+			    return $(this).text();
+			}).get());
+		}
+	});*/
 });
