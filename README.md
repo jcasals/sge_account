@@ -35,6 +35,17 @@ Content
 - <b>header.php</b>: Header for all pages of the website
 - <b>index.php</b>: Index and all group accounting page
 
+Tools used
+==========
+- Twitter Bootstrap (CSS, JS and HTML)
+- jQuery and jQuery UI
+- Datatables (Bootstrap implementation)
+- Raphael JS (raphael.js, g.raphael.js, g.pie.js)
+
+Copyright and Licensing
+=======================
+
+
 Important
 =========
 

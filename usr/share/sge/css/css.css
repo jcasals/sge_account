@@ -1,3 +1,4 @@
+/* GENERAL */
 body {
     padding-bottom: 10px;
     background: #F9F9F9;
@@ -20,28 +21,11 @@ a:hover {
     color: #05C;
 }
 
-.cos {
+#top {
     margin-top: 35px;
 }
 
-.links, .alert-pic {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.links {
-    width: 385px;
-}
-
-.alert-pic {
-    width: 385px;
-}
-
-.links a:link {
-	font-weight:bold;
-}
-
-.taula {
+#wellt, #wellp {
     display: inline-block;
     margin-left: auto;
     margin-right: auto;
@@ -75,7 +59,11 @@ h1,h2,h3,h4,h5,h6 {
 	margin-right: 5px;
 }
 
-#showadv, #showmon {
+#goback {
+	margin-top: 5px;
+}
+
+.switch {
 	margin-top: -10px;
 	margin-bottom: 15px;
 }
@@ -83,6 +71,8 @@ h1,h2,h3,h4,h5,h6 {
 #form {
 	margin-bottom: 10px;
 }
+/* FI GENERAL */
+
 /* NAVBAR */
 .navbar-fixed-top {
     -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
@@ -169,7 +159,7 @@ table .row::before, table .row::after {
     background-color: transparent;
 }
 
-#ctable_wrapper .row, #ttable_wrapper .row, #t2table_wrapper .row, #t3table_wrapper .row, #dtable_wrapper .row, #d2table_wrapper .row, #d3table_wrapper .row {
+#ctable_wrapper .row {
     display: none;
 }
 
@@ -179,11 +169,12 @@ table .row::before, table .row::after {
 
 .taules tbody .firstcol, .taules tfoot .firstcol {
     text-align: center;
-    background-color: transparent !important;
 }
 
-.hovercol {
-	background-color: #EEE;
+.table-bordered tbody:last-child tr:last-child td:first-child {
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
 }
 /* FI DATATABLES */
 

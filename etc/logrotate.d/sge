@@ -1,0 +1,48 @@
+# Example rules for rotating SGE log files with logrotate(1).
+# Substitute the actual values of /usr/share/gridengine and cluster1 for your
+# installation and save it as, say, /etc/logrotate.d/sge
+
+/usr/share/gridengine/cluster1/common/accounting {
+    compress
+    create 644 sgeadmin sgeadmin 
+    daily
+    dateext
+    rotate 356
+    prerotate
+    /usr/bin/rsync -va /usr/share/gridengine/cluster1/common/ coresrv05.linux.crg.es::sge_account
+    endscript
+}
+
+/var/spool/gridengine/default/qmaster/messages {
+    compress
+    missingok
+    notifempty
+    rotate 356
+    weekly
+}
+
+/var/spool/gridengine/*/messages {
+    compress
+    missingok
+    notifempty
+    rotate 356
+    weekly
+}
+
+# If MONITOR=1 in the scheduler params
+/usr/share/gridengine/cluster1/common/schedule {
+    compress
+    create 644 sgeadmin sgeadmin
+    daily
+    dateext
+    rotate 356
+}
+
+# Don't compete with dbwriter.
+/usr/share/gridengine/cluster1/common/reporting {
+    compress
+    create 644 sgeadmin sgeadmin
+    daily
+    dateext
+    rotate 356
+}

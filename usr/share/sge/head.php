@@ -9,17 +9,21 @@
 
 <!-- STYLE -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/DT_bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/datepicker.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.datatables.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"> <!-- 1.8.16 -->
 <link rel="stylesheet" type="text/css" href="css/css.css">
 
 <!-- JAVASCRIPT -->
 <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script> <!-- 1.8.16 -->
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/DT_bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap.datatables.js"></script>
+<script type="text/javascript" src="js/raphaeljs/raphael.js"></script>
+<script type="text/javascript" src="js/raphaeljs/g.raphael.js"></script>
+<script type="text/javascript" src="js/raphaeljs/g.pie.js"></script>
+<script type="text/javascript" src="js/plot.js"></script>
 <script type="text/javascript" src="js/js.js"></script>
 
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->

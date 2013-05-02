@@ -1,12 +1,15 @@
 #!/bin/bash
 
-SETUP="../setup"
-MYSQL='/usr/bin/mysql'
-GUNZIP='/bin/gunzip'
-GZIP='/bin/gzip'
+# MYSQL='/usr/bin/mysql'
+# GUNZIP='/bin/gunzip'
+# GZIP='/bin/gzip'
+
+MYSQL='mysql'
+GUNZIP='gunzip'
+GZIP='gzip'
 
 # LOAD CONFIG PARAMETERS
-source $SETUP/sge_parser.cfg
+source sge_parser.cfg
 
 # We expect the log file to have the format accounting-$date.gz.
 # 1) look for files
@@ -38,6 +41,11 @@ for log_file_complete_path in $sge_logs/accounting-*.gz; do
 		# 3) Gunzip
 		echo $GUNZIP $log_file_complete_path
 		$GUNZIP $log_file_complete_path
+		if [ $? -ne 0 ]; then
+			echo "Problems gunzipping file log_file_complete_path. File not parsed. Abort"
+			exit 1
+		fi
+
 		
 		# 4) Parse
 		wrong=1
@@ -46,24 +54,27 @@ for log_file_complete_path in $sge_logs/accounting-*.gz; do
 			IFS=":"
 			sgeArr=($line)
 			
-			job_date=$(date -d @${sgeArr[8]} '+%Y-%m-%d')
+			job_date=$(date -d @${sgeArr[10]} '+%Y-%m-%d')
 			id_job=${sgeArr[5]}-${sgeArr[35]}			
-			
+			if [ ${sgeArr[9]} -eq '0' ]; then
+			# queued job never start, (starttime=0 lets see if nwe neeed end time=0)  let's log it and do nothing
+				echo "$id_job from ${sgeArr[3]} has a start_time of ${sgeArr[8]} which means it never started"
+			else
+			# add a new entry
 			$MYSQL -u $db_user -p$db_pass -h $db_host $db_name -e "INSERT INTO account (id_job, date, qname, hostname, groupname, owner, job_name, job_number, account, priority, submission_time, start_time, end_time, failed, exit_status, ru_wallclock, ru_utime, ru_stime, ru_maxrss, ru_ixrss, ru_ismrss, ru_idrss, ru_isrss, ru_minflt, ru_majflt, ru_nswap, ru_inblock, ru_oublock, ru_msgsnd, ru_msgrcv, ru_nsignals, ru_nvcsw, ru_nivcsw, project, department, granted_pe, slots, task_number, cpu, mem, io, category, iow, pe_taskid, maxvmem, arid, ar_submission_time) VALUES ('$id_job','$job_date', '${sgeArr[0]}', '${sgeArr[1]}', '${sgeArr[2]}', '${sgeArr[3]}', '${sgeArr[4]}', '${sgeArr[5]}', '${sgeArr[6]}', '${sgeArr[7]}', '${sgeArr[8]}', '${sgeArr[9]}', '${sgeArr[10]}', '${sgeArr[11]}', '${sgeArr[12]}', '${sgeArr[13]}', '${sgeArr[14]}', '${sgeArr[15]}', '${sgeArr[16]}', '${sgeArr[17]}', '${sgeArr[18]}', '${sgeArr[19]}', '${sgeArr[20]}', '${sgeArr[21]}', '${sgeArr[22]}', '${sgeArr[23]}', '${sgeArr[24]}', '${sgeArr[25]}', '${sgeArr[26]}', '${sgeArr[27]}', '${sgeArr[28]}', '${sgeArr[29]}', '${sgeArr[30]}', '${sgeArr[31]}', '${sgeArr[32]}', '${sgeArr[33]}', '${sgeArr[34]}', '${sgeArr[35]}', '${sgeArr[36]}', '${sgeArr[37]}', '${sgeArr[38]}', '${sgeArr[39]}', '${sgeArr[40]}', '${sgeArr[41]}', '${sgeArr[42]}', '${sgeArr[43]}', '${sgeArr[44]}')"
-
-			if [ $? -ne '0' ]; then
-			# Something went wrong. not updating database
-				wrong=0
-			fi
-			
+				if [ $? -ne '0' ]; then
+				# Something went wrong. not updating database
+					wrong=0
+				fi
 			IFS="$OLD_IFS"	
+			fi
 		done < $sge_logs/$file_name
-
 		echo "File $file_name parsed!"
 		
 		# 5) gzip again
 		echo $GZIP $sge_logs/$file_name
-		$GZIP $sge_logs/$file_name
+		$GZIP $sge_logs/$file_name || echo "Problems zipping file log_file_complete_path. File parsed. We DO NOT ABORT"
+
 		echo "### ENDING FILE PARSING ###"
 		echo ""
 
