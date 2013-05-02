@@ -32,8 +32,8 @@ Tools used
 - Datatables (Bootstrap implementation)
 - Raphael JS (raphael.js, g.raphael.js, g.pie.js)
 
-Copyright and Licensing
-=======================
+Licensing
+=========
 
 
 Important
