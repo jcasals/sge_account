@@ -1,15 +1,11 @@
 #!/bin/bash
 
-# MYSQL='/usr/bin/mysql'
-# GUNZIP='/bin/gunzip'
-# GZIP='/bin/gzip'
-
-MYSQL='mysql'
-GUNZIP='gunzip'
-GZIP='gzip'
+MYSQL='/usr/bin/mysql'
+GUNZIP='/bin/gunzip'
+GZIP='/bin/gzip'
 
 # LOAD CONFIG PARAMETERS
-source sge_parser.cfg
+source /etc/sge_parser/sge_parser.cfg
 
 # We expect the log file to have the format accounting-$date.gz.
 # 1) look for files

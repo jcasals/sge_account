@@ -1,8 +1,7 @@
 #!/bin/bash
 
-SETUP="sge_parser.cfg"
-#MYSQL='/usr/bin/mysql'
-MYSQL='mysql'
+SETUP="/etc/sge_parser/sge_parser.cfg"
+MYSQL='/usr/bin/mysql'
 
 # LOAD CONFIG PARAMETERS
 source $SETUP
