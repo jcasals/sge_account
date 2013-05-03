@@ -21,7 +21,7 @@ Installation
 
 Content
 =======
-
+<pre>
 sge_account
 	|
 	|-- etc
@@ -52,6 +52,7 @@ sge_account
 		 	  	   |-- footer.php
 		 	  	   |-- set.php
 		 	  	   |-- db.php
+</pre>
 
 Tools used
 ==========
