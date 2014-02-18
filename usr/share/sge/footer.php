@@ -1,5 +1,10 @@
 <footer>
 	<center>
-		<a href="#"><img width="175px" src="img/gelogo2.png"/></a>
+	<?php
+	$path=(dirname(__FILE__));
+	foreach (glob("$path/addons/footer_addons/*.php") as $filename){
+		include_once $filename;
+	}
+	?>
 	</center>
 </footer>

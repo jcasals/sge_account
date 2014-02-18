@@ -10,49 +10,70 @@ Requirements
 - MySQL
 - Apache (httpd) server
 
-Installation
-============
-
-1. Download the ZIP package and put everything in its right path
-2. Go to file <b>/etc/sge_parser.cfg</b> and specify your database parameters in the <i>DB_Config</i> section. If you are running this in localhost, you just have to specify your <i>db_user</i> and <i>db_pass</i> parameters. The user and database name you specified will be created with the installation script.
-3. Check your sge logs location and specify it in the <b>/etc/sge_parser.cfg</b> file in the <i>SGE_Config</i> section. This is important for the log parser to be able to read it and insert the data in the database.
-4. If you are sure you put the correct values, run the <b>/usr/sge_parse_install.sh</b> script and the database will be created. You will be asked for database root password twice during the installation.
-5. Remember that you must add the parser <b>/usr/bin/sge_parse.sh</b> to your preferred cron system. We recommend to put it at <b>00:01AM</b> to have a good insertion of the data in the database.
-
 Content
 =======
-<pre>
-sge_account
-	|
-	|-- etc
-	|	 |-- httpd
-	|	 |	  |-- conf.d
-	|	 |			  |-- accounting.conf
-	|	 |
-	|	 |-- logrotate.d
-	|	 |	  |-- sge
-	|	 |
-	|	 |-- sge_parser
-	|		  |-- sge_parser.cfg
-	|		 		 
-	|-- usr
-		 |-- bin
-		 |	  |-- sge_parse_install.sh
-		 |	  |-- sge_parse.sh
-		 |
-		 |-- share
-		 	  |-- sge
-		 	  	   |-- activerecord
-		 	  	   |-- css
-		 	  	   |-- img
-		 	  	   |-- js
-		 	  	   |-- index.php
-		 	  	   |-- head.php
-		 	  	   |-- header.php
-		 	  	   |-- footer.php
-		 	  	   |-- set.php
-		 	  	   |-- db.php
-</pre>
+
+Basic install & configure instructions for SGE & sge_account
+------------------------------------------------------------
+
+- Install
+	You can use rpm or tarball for installing sge_account.
+
+- Config
+	It uses a conf file (located under /etc/sge_parser/sge_parser.cfg)
+
+	# DB_Config
+	db_user=sge
+	db_pass=sgepasswd
+	db_host=localhost
+	db_name=sge_account
+
+	# SGE_Config
+	sge_logs=/usr/share/gridengine/antcluster/common/
+
+
+- SGE log files
+	You don't have to configure sge_account in SGE master. You can
+	rotate its logs and send them to a remote server. You need to
+	confiure a rsync server and logrotate for sge.
+	An example
+
+	rsync:
+		# cat /etc/rsyncd.conf 
+		pid file = /var/run/rsyncd.pid
+		max connections = 5
+		log file = /var/log/rsync.log	
+		use chroot = yes
+		[sge_account]
+			read only= no
+			path = /usr/share/gridengine/cluster1/common/
+			comment = accounting
+		        uid = sgeadmin
+		        gid = games
+
+
+	sge logrotate:
+		# cat /etc/logrotate.d/sge
+		/usr/share/gridengine/cluster1/common/accounting {
+		    compress
+		    create 644 sgeadmin sgeadmin 
+		    daily
+		    dateext
+		    rotate 356
+		    prerotate
+		    /usr/bin/rsync -va /usr/share/gridengine/cluster1/common/ $rsync_server::sge_account
+		    endscript
+		}
+
+	NOTE: dateext is mandatory cause the log parsers looks
+		for file accounting-$DATE.gz
+
+	The you must run a daily cron that parses log files:
+
+	# sge_account_update
+	15 6 * * * /usr/bin/sge_parse.sh
+
+For further instructions please contact us at jcasals at gmail.com // arnau.bria at gmail.com
 
 Tools used
 ==========
@@ -61,11 +82,13 @@ Tools used
 - jQuery and jQuery UI
 - Datatables (Bootstrap implementation)
 - Raphael JS (raphael.js, g.raphael.js, g.pie.js)
-- PHPActiveRecord as a database ORM
 
 Licensing
 =========
 
+Our code is released under GPL v3.0.
+Twitter Bootstrap is licensed under the Apache License v2.0 (http://www.anidocs.es/bootstrap/docs/)
+PHP ActiveRecord is licensed under the MIT License (http://www.phpactiverecord.org/)
 
 Important
 =========

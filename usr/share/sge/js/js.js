@@ -1,8 +1,18 @@
 $(document).ready(function() {
 	// INIT VALIDATION FORM FOR ADVANCED SEARCH MENU
 	$("#form").validate({errorPlacement: function(error,element) {return true;}});
+	
+	// THIS EXTENSION HELPS TO FORMAT SIZES AND PRESERVE "FRIENDLY" FORMATTING
+	$.fn.dataTableExt.afnSortData['dom-text'] = function  ( oSettings, iColumn )
+	{
+		var aData = [];
+		$( 'td:eq('+iColumn+') input[type="hidden"]', oSettings.oApi._fnGetTrNodes(oSettings) ).each( function () {
+			aData.push( this.value );
+		} );
+		return aData;
+	}
 
-	// DEFINING CTABLE WITH DATATABLES FOR SORTING
+	// DATATABLES
 	$('#ctable').dataTable( {
         "bInfo": false,
         "iDisplayLength": -1,
@@ -10,6 +20,34 @@ $(document).ready(function() {
         "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
         "sPaginationType": "bootstrap",
     });
+    
+	$('#itable').dataTable( {
+        "bInfo": false,
+        "iDisplayLength": -1,
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "sPaginationType": "bootstrap",
+		"aoColumns": [
+			null,
+			{ "sSortDataType": "dom-text", "sType": "numeric" },
+			{ "sSortDataType": "dom-text", "sType": "numeric" },
+			null,
+		]
+    });
+    
+    $('#dtable').dataTable( {
+        "bInfo": false,
+        "iDisplayLength": -1,
+        "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        "sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+        "sPaginationType": "bootstrap",
+		"aoColumns": [
+			null,
+			{ "sSortDataType": "dom-text", "sType": "numeric" },
+			null,
+		]
+    });
+    // FI DATATABLES
 	
 	// FROM DATEPICKER
     $("#from").datepicker({
@@ -31,6 +69,13 @@ $(document).ready(function() {
 				$("#from").datepicker( "option", "maxDate", selectedDate );
 			}
 		}
+    });
+    
+    $(".datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
+        //maxDate: '-1',
+        maxDate: '+0',
+        minDate: new Date(2013,5 - 1,20),
     });
 
 	// TOOLTIPS

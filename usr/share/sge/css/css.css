@@ -73,6 +73,26 @@ h1,h2,h3,h4,h5,h6 {
 }
 /* FI GENERAL */
 
+/* MENU LINKS INDEX */
+.links {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+}
+
+.links {
+    width: 385px;
+}
+
+.alert-pic {
+    width: 385px;
+}
+
+.links a:link {
+    font-weight:bold;
+}
+/* FI MENU LINKS INDEX */
+
 /* NAVBAR */
 .navbar-fixed-top {
     -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
@@ -105,6 +125,57 @@ h1,h2,h3,h4,h5,h6 {
     background: #EEE;
 }
 /* FI NAVBAR */
+
+/* CUSTOM DROPDOWN */
+.navbar-fixed-top .nav li {
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 200;
+}
+
+.navbar-fixed-top .nav {
+    padding-top: 3px;
+}
+
+ul.dropdown-menu {
+    margin-top: -3px;
+    background-color: #111111;
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
+}
+
+ul.dropdown-menu a {
+    color: #BBB !important;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.dropdown-menu li a:hover {
+    background: #222;
+    color: white !important;
+}
+
+.navbar-inverse .nav li.dropdown.open > .dropdown-toggle {
+    background: transparent;
+}
+
+
+ul.nav li.dropdown:hover > ul.dropdown-menu { /* MENU APAREIX AMB HOVER */
+    display: block;
+}
+
+
+.navbar .nav > li > .dropdown-menu:after { /* TREU LA FLETXETA DEL MENU */
+    content: none !important;
+}
+
+.navbar-inverse .nav li.dropdown >.dropdown-toggle:hover > .caret {
+    border-top-color: #FFF;
+    border-bottom-color: #FFF;
+}
+/* FI CUSTOM DROPDOWN */
+
 
 /* TOOLTIP */
 .toolt, .toolt:hover {
@@ -159,7 +230,7 @@ table .row::before, table .row::after {
     background-color: transparent;
 }
 
-#ctable_wrapper .row {
+#ctable_wrapper .row, #itable_wrapper .row, #dtable_wrapper .row {
     display: none;
 }
 
@@ -175,6 +246,14 @@ table .row::before, table .row::after {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
+}
+
+.userold {
+	background-color: #f2dede !important;
+}
+.shared_usage{
+	/* Fucking Casals selectying colors*/
+	background-color: #d9edf7 !important;
 }
 /* FI DATATABLES */
 

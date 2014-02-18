@@ -1,8 +1,12 @@
 #!/bin/bash
 
-MYSQL='/usr/bin/mysql'
-GUNZIP='/bin/gunzip'
-GZIP='/bin/gzip'
+# MYSQL='/usr/bin/mysql'
+# GUNZIP='/bin/gunzip'
+# GZIP='/bin/gzip'
+
+MYSQL='mysql'
+GUNZIP='gunzip'
+GZIP='gzip'
 
 # LOAD CONFIG PARAMETERS
 source /etc/sge_parser/sge_parser.cfg
@@ -49,7 +53,7 @@ for log_file_complete_path in $sge_logs/accounting-*.gz; do
 			OLD_IFS="$IFS"
 			IFS=":"
 			sgeArr=($line)
-			
+				
 			job_date=$(date -d @${sgeArr[10]} '+%Y-%m-%d')
 			id_job=${sgeArr[5]}-${sgeArr[35]}			
 			if [ ${sgeArr[9]} -eq '0' ]; then

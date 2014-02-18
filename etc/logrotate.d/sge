@@ -1,15 +1,15 @@
 # Example rules for rotating SGE log files with logrotate(1).
-# Substitute the actual values of /usr/share/gridengine and cluster1 for your
+# Substitute the actual values of /usr/share/gridengine and antcluster for your
 # installation and save it as, say, /etc/logrotate.d/sge
 
-/usr/share/gridengine/cluster1/common/accounting {
+/usr/share/gridengine/antcluster/common/accounting {
     compress
     create 644 sgeadmin sgeadmin 
     daily
     dateext
     rotate 356
     prerotate
-    /usr/bin/rsync -va /usr/share/gridengine/cluster1/common/ coresrv05.linux.crg.es::sge_account
+    /usr/bin/rsync -va /usr/share/gridengine/antcluster/common/ accounting.linux.crg.es::sge_account
     endscript
 }
 
@@ -30,7 +30,7 @@
 }
 
 # If MONITOR=1 in the scheduler params
-/usr/share/gridengine/cluster1/common/schedule {
+/usr/share/gridengine/antcluster/common/schedule {
     compress
     create 644 sgeadmin sgeadmin
     daily
@@ -39,7 +39,7 @@
 }
 
 # Don't compete with dbwriter.
-/usr/share/gridengine/cluster1/common/reporting {
+/usr/share/gridengine/antcluster/common/reporting {
     compress
     create 644 sgeadmin sgeadmin
     daily

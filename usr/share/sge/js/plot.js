@@ -42,6 +42,7 @@ $(document).ready(function() {
 	    		160,
 	    		items, 
 	    		{
+	    			//"colors": ["#2f69bf","#a2bf2f","#bf5a2f","#bfa22f","#772fbf","#bf2f2f","#00327f","#667f00","#7f2600","#7f6500"],
 	    			"legend": labels
 	    		}
 	    	);

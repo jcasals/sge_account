@@ -1,0 +1,19 @@
+If you want to add more Accountings you must edit index like:
+
+	<div class="container-fluid">
+		<div class="row-fluid cos">
+			<div class="span12">
+				<div class="well links">
+					<h4>SGE</h4>
+                    <a href="sge.php">SGE</a> Accounting
+					<br><br>
+                    <h4>DDN</h4>
+                    <a href="ddn.php">DDN</a> Accounting
+					<br><br>
+                    <h4>Isilon</h4>
+                    <a href="isilon.php">Isilon</a> Accounting
+				</div><!-- well -->
+			</div><!--/span-->
+		</div><!--/row-->
+	</div><!--/.fluid-container-->
+
