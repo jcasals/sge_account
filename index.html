@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="SGE Account : A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstrap for UI), MySQL (with PHP ActiveRecord as ORM) and a Bash script parser." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>SGE Account</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/jcasals/sge_account">View on GitHub</a>
+
+          <h1 id="project_title">SGE Account</h1>
+          <h2 id="project_tagline">A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstrap for UI), MySQL (with PHP ActiveRecord as ORM) and a Bash script parser.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/jcasals/sge_account/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/jcasals/sge_account/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="sge-accounting" class="anchor" href="#sge-accounting"><span class="octicon octicon-link"></span></a>SGE Accounting</h1>
+
+<h3>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h3>
+
+<p>A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstrap for UI), MySQL (with PHP ActiveRecord as ORM) and a Bash script parser.</p>
+
+<h3>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h3>
+
+<ul>
+<li>PHP 5.3, PHP-Mysql and PHP-PDO with the MySQL extension enabled</li>
+<li>MySQL</li>
+<li>Apache (httpd) server</li>
+</ul><h3>
+<a name="content" class="anchor" href="#content"><span class="octicon octicon-link"></span></a>Content</h3>
+
+<h4>
+<a name="basic-install--configure-instructions-for-sge--sge_account" class="anchor" href="#basic-install--configure-instructions-for-sge--sge_account"><span class="octicon octicon-link"></span></a>Basic install &amp; configure instructions for SGE &amp; sge_account</h4>
+
+<h5>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h5>
+
+<p>You can use rpm or tarball for installing sge_account.</p>
+
+<h5>
+<a name="config" class="anchor" href="#config"><span class="octicon octicon-link"></span></a>Config</h5>
+
+<p>It uses a configuration file located in <strong>/etc/sge_parser/sge_parser.cfg</strong></p>
+
+<pre><code># DB_Config
+db_user=sge
+db_pass=sgepasswd
+db_host=localhost
+db_name=sge_account
+
+# SGE_Config
+sge_logs=/usr/share/gridengine/antcluster/common/
+</code></pre>
+
+<h5>
+<a name="sge-log-files" class="anchor" href="#sge-log-files"><span class="octicon octicon-link"></span></a>SGE log files</h5>
+
+<p>You don't have to configure sge_account in SGE master. You can rotate its logs and send them to a remote server. You need to configure a rsync server and logrotate for <em>sge</em>. You can take a look at the following example:</p>
+
+<p><strong><em>rsync</em></strong></p>
+
+<pre><code>$ cat /etc/rsyncd.conf 
+
+pid file = /var/run/rsyncd.pid
+max connections = 5
+log file = /var/log/rsync.log   
+use chroot = yes
+[sge_account]
+    read only= no
+    path = /usr/share/gridengine/cluster1/common/
+    comment = accounting
+    uid = sgeadmin
+    gid = games
+</code></pre>
+
+<p><strong><em>sge logrotate</em></strong></p>
+
+<pre><code>$ cat /etc/logrotate.d/sge
+
+/usr/share/gridengine/cluster1/common/accounting {
+    compress
+    create 644 sgeadmin sgeadmin 
+    daily
+    dateext
+    rotate 356
+    prerotate
+    /usr/bin/rsync -va /usr/share/gridengine/cluster1/common/ $rsync_server::sge_account
+    endscript
+}
+</code></pre>
+
+<p>* <strong><em>NOTE:</em></strong> <em>dateext</em> is mandatory because the log parsers looks for file <em>accounting-$DATE.gz</em></p>
+
+<p>Then you must run a daily cron that parses log files:</p>
+
+<pre><code># sge_account_update
+15 6 * * * /usr/bin/sge_parse.sh
+</code></pre>
+
+<p>For further instructions please contact us at jcasals at gmail.com // arnau.bria at gmail.com</p>
+
+<h3>
+<a name="tools-used" class="anchor" href="#tools-used"><span class="octicon octicon-link"></span></a>Tools used</h3>
+
+<ul>
+<li>
+<a href="http://getbootstrap.com">Twitter Bootstrap</a> 2.2.1 (CSS, JS and HTML)</li>
+<li>
+<a href="http://jquery.com">jQuery</a> and <a href="http://jqueryui.com">jQuery UI</a>
+</li>
+<li>
+<a href="http://datatables.net/blog/Twitter_Bootstrap">Datatables</a> (Bootstrap implementation)</li>
+<li>
+<a href="http://raphaeljs.com">Raphael JS</a> (raphael.js, g.raphael.js, g.pie.js)</li>
+</ul><h3>
+<a name="licensing" class="anchor" href="#licensing"><span class="octicon octicon-link"></span></a>Licensing</h3>
+
+<p>Our code is released under GPL v3.0.
+Twitter Bootstrap is licensed under the Apache License v2.0 (<a href="http://www.anidocs.es/bootstrap/docs/">http://www.anidocs.es/bootstrap/docs/</a>)
+PHP ActiveRecord is licensed under the MIT License (<a href="http://www.phpactiverecord.org/">http://www.phpactiverecord.org/</a>)</p>
+
+<h3>
+<a name="important" class="anchor" href="#important"><span class="octicon octicon-link"></span></a>Important</h3>
+
+<p>This is a beta version. Things may not work as expected or as you think it should work. For any doubt, advice or complaint, please tell us and we will try to fix it as soon as possible.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">SGE Account maintained by <a href="https://github.com/jcasals">jcasals</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
