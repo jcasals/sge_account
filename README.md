@@ -1,4 +1,4 @@
-SGE Accounting
+SGE Account
 ==============
 
 ### Description
