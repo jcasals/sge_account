@@ -51,6 +51,7 @@ use chroot = yes
     uid = sgeadmin
     gid = games
 ```
+
 ***sge logrotate***
 ```
 $ cat /etc/logrotate.d/sge
