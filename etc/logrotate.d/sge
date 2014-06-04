@@ -11,7 +11,7 @@
 #    dateext
 #    rotate 356
 #    prerotate
-#	/usr/bin/rsync -avz --exclude accounting  --exclude reporting --exclude schedule /usr/share/gridengine/$clustername/common/accounting-*gz  $rsync_server::sge_account 
+#	/usr/bin/rsync -avz  /usr/share/gridengine/$clustername/common/accounting-*gz  $rsync_server::sge_account 
 #    endscript
 #}
 #
