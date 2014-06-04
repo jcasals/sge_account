@@ -10,7 +10,7 @@
 			</li>                   
 			<?php
 				$path=(dirname(__FILE__));
-				foreach (glob("$path/addons/head_addon/*.php") as $filename){
+				foreach (glob("$path/addons/head_addons/*.php") as $filename){
 					include_once $filename;
 				}
 			?>

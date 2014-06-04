@@ -8,13 +8,12 @@ A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstr
 ### Version 2 
 
 We have rewrite 50% of the code. There are important changes that involve MySQL and the parser itself. Also, we found some bugs.
-So, it would be nie to have a upgrade,but we do not have time to provide it, so we recommend a fresh install. Easy one :-)
+So, it would be nice to have a upgrade,but we do not have time to provide it, so we recommend a fresh install. Easy one :-)
 
 - New parser: per (the time for uploading entries into DDBB has been reduced by 10), real log ...
 - New DDBB and table schema (added some fields for calculating efficiency)
 - Job Efficiency plots (requested resources (h_rt, h_vmem) / used reources)
 - All SGE stuff (General Accoutning, Billing and Efficiency are now part of the main sge_Accountand not an addon anymore).
-- ActiveRecords, Rapahaeljs and Twitter Bootstrap are not long provided, but we provide instructions for installing them.
 
 ### Requirements
 

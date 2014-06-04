@@ -19,8 +19,14 @@
 				<h4>SGE</h4>
 					<a href="sge.php">SGE</a> Accounting
 					<br><br>
+				<h4>SGE Billing (Detailed)</h4>
+					<a href="http://accounting.linux.crg.es/addons/sge_billing/sge_billing.php">SGE Billing</a>
+			    		<br><br>
+				<h4>SGE job Efficiency (Beta version)</h4>
+					<a href="http://accounting.linux.crg.es/addons/sge_efficiency/sge_eff.php">Efficiency</a>
+			    		<br><br>
 				<?php
-					foreach (glob("$path/addons/index_addon/*.php") as $filename){
+					foreach (glob("$path/addons/index_addons/*.php") as $filename){
 						include_once $filename;
 					}
 				?>
@@ -31,7 +37,7 @@
 <hr>
 <?php
 	include('./footer.php');
-		foreach (glob("$path/addons/footer_addon/*.php") as $filename){
+		foreach (glob("$path/addons/footer_addons/*.php") as $filename){
 			include_once  $filename;
 		}
 ?>
