@@ -1,0 +1,7 @@
+/var/log/sge_accounting/accounting.log {
+  missingok
+  notifempty
+  create 0644 sgeaccounting sgeaccounting
+  sharedscripts
+  endscript
+}
