@@ -1,11 +1,11 @@
 SGE Account
 ===========
 
-### Description
+# Description
 
 A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstrap for UI), MySQL (with PHP ActiveRecord as ORM) and a Perlscript parser.
 
-### Version 2 
+## Version 2 
 
 We have rewrite 50% of the code. There are important changes that involve MySQL and the parser itself. Also, we found some bugs.
 So, it would be nice to have a upgrade,but we do not have time to provide it, so we recommend a fresh install. Easy one :-)
@@ -15,21 +15,44 @@ So, it would be nice to have a upgrade,but we do not have time to provide it, so
 - Job Efficiency plots (requested resources (h_rt, h_vmem) / used reources)
 - All SGE stuff (General Accoutning, Billing and Efficiency are now part of the main sge_Accountand not an addon anymore).
 
-### Requirements
+## Requirements
 
 - PHP 5.3, PHP-Mysql and PHP-PDO with the MySQL extension enabled
 - MySQL
 - Apache (httpd) server
 - Few Perl modules (perl-Config-Simple.noarch perl-Log-Dispatch Getopt::Long)
 
-### Basic install 
+# Install 
 
 You can use rpm or tarball for installing sge_account.
-You don't have to compile as it's php and  perl code.
+You should not use root for running any part of this code. We use a UNIX account called sgeaccounting. All the code exept /usr/sbin/sge_parse_install.pl must belong to that user.
 
-#### Config
+## RPM
 
-It uses a configuration file located in **/etc/sge_parser/sge_parser.cfg**
+yum install 
+
+## From source (git)
+
+As sgeaccounting (or any other non-root user) run:
+
+```
+git clone https://github.com/jcasals/sge_account.git 
+cp -aR sge_account/usr/share/sge /usr/share/sge
+cp etc/httpd/conf.d/accounting.conf /etc/httpd/conf.d/accounting.conf
+cp etc/logrotate.d/sge /etc/logrotate.d/sge
+cp etc/sge_parser.cfg /etc/sge_parser/sge_parser.cfg
+cp usr/bin/sge_account_file_parser.pl /usr/bin/sge_account_file_parser.pl
+cp usr/sbin/sge_parse_install.pl /usr/sbin/sge_parse_install.pl
+chmod 600 /etc/sge_parser/sge_parser.cfg
+```
+
+/usr/share/sge is our http Documentroot. sgeaccounting must have write access to that directory. Feel free to use any other PATH, just change /etc/httpd/conf.d/accounting.conf
+
+# Config
+
+## Config file
+
+All the code scripts use  a configuration file located in **/etc/sge_parser/sge_parser.cfg**
 
 ```
 [DB_Config]
@@ -45,9 +68,29 @@ sge_logs=/usr/share/gridengine/$clustername/common/
 level=info
 ```
 
-Use your own calues for db_* and sge_logs should point to you accounting log PATH.
+Use your own values for db_* and sge_logs should point to you accounting log PATH.
 
-#### SGE log files
+## MySQL
+
+We provide a perl script that creates the DDBB,table and user for you. Configure /etc/sge_parser/sge_parser.cfg (see above) and run
+
+```
+/usr/sbin/sge_parse_install.pl
+```
+
+## Parser
+
+The parser should run in a daily cron. Feel free to configure it in your crontab or /etc/cron.daily ...
+
+```
+crontal -b
+15 6 * * * /usr/bin/sge_account_file_parser.pl
+```
+## Logrotate
+
+The SGE master node and only master node must rotate logs using the file /etc/logrotate.d/sge. Edit the file, change defualt values and use yours.
+
+### SGE log files
 
 You don't have to configure sge_account in SGE master. You can rotate its logs and send them to a remote server. You need to configure a rsync server and logrotate for *sge*. You can take a look at the following example:
 
