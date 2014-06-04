@@ -28,7 +28,7 @@ pod2usage(-verbose => 2) if $man;
 
 # LOAD CONFIG PARAMETERS
 my %Config=();
-Config::Simple->import_from('../sge_parser.cfg',\%Config);
+Config::Simple->import_from('/etc/sge_parser/sge_parser.cfg',\%Config);
 #print Dumper \%Config;
 
 # Logging

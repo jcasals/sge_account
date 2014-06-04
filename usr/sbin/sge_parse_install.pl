@@ -8,7 +8,7 @@ use DBI;
 
 # LOAD CONFIG PARAMETERS
 my %Config=();
-Config::Simple->import_from('../sge_parser.cfg',\%Config);
+Config::Simple->import_from('/etc/sge_parser/sge_parser.cfg',\%Config);
 
 my $dbh = DBI->connect("DBI:mysql:$Config{'DB_Config.db_name'}", "$Config{'DB_Config.db_user'}", "$Config{'DB_Config.db_pass'}", {AutoCommit=>0,RaiseError=>0}); #|| die print "Cannot connect to $Config{'DB_Config.db_name'} as $Config{'DB_Config.db_user'} using passwd. Please check conf";
 
