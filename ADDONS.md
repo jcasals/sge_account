@@ -29,7 +29,7 @@ We add our logo:
 
 <?php
 	$path=(dirname(__FILE__));
-	echo '<a target=_blank href="http://www.crg.cat"><img width="175px" src="$path/../img/crg.png"/></a>';
+	echo '<a target=_blank href="http://www.crg.es"><img width="175px" src="$path/../img/crg.png"/></a>';
 ?>
 
 
@@ -38,23 +38,23 @@ $sge_account_root/addons/index_addons
 In main index.php we include all files located under this path.
 
 <h4>SGE Billing (Detailed)</h4>
-<a href="addons/sge_billing/sge.php">SGE Billing</a> <br><br>
+<a href="addons/isilon/isilon.php">Isilon Accounting</a> <br><br>
 
 
 $sge_account_root/addons/$extra_account
 =======================================
 
-Taking the above index addon example, we add a extra sge_billing . We must create some links:
+Taking the above index addon example, we add a extra Storage Accounting. We must create some links:
 
-addons/sge_billing/
+addons/isilon
 total 28
 	activerecord -> ../../activerecord/
 	css -> ../../css
 	img -> ../../img
 	js -> ../../js
-	sge_db.php
-	sge.php
-	sge_set.php
+	isilon_db.php
+	isilon.php
+	isilon_set.php
 
 *php refers to extra accounting code.
 

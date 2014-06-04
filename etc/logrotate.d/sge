@@ -1,48 +1,50 @@
 # Example rules for rotating SGE log files with logrotate(1).
-# Substitute the actual values of /usr/share/gridengine and antcluster for your
-# installation and save it as, say, /etc/logrotate.d/sge
+# Substitute the current values of $clustername and $rsync_server and sgeadmin user
 
-/usr/share/gridengine/antcluster/common/accounting {
-    compress
-    create 644 sgeadmin sgeadmin 
-    daily
-    dateext
-    rotate 356
-    prerotate
-    /usr/bin/rsync -va /usr/share/gridengine/antcluster/common/ accounting.linux.crg.es::sge_account
-    endscript
-}
-
-/var/spool/gridengine/default/qmaster/messages {
-    compress
-    missingok
-    notifempty
-    rotate 356
-    weekly
-}
-
-/var/spool/gridengine/*/messages {
-    compress
-    missingok
-    notifempty
-    rotate 356
-    weekly
-}
-
-# If MONITOR=1 in the scheduler params
-/usr/share/gridengine/antcluster/common/schedule {
-    compress
-    create 644 sgeadmin sgeadmin
-    daily
-    dateext
-    rotate 356
-}
-
-# Don't compete with dbwriter.
-/usr/share/gridengine/antcluster/common/reporting {
-    compress
-    create 644 sgeadmin sgeadmin
-    daily
-    dateext
-    rotate 356
-}
+# ENSURE THAT THIS IS ONLY INSTALLED IN SGE MASTER NODE
+# Uncomment all lines:
+#
+#/usr/share/gridengine/$clustername/common/accounting {
+#    compress
+#    create 644 sgeadmin sgeadmin 
+#    daily
+#    dateext
+#    rotate 356
+#    prerotate
+#	/usr/bin/rsync -avz --exclude accounting  --exclude reporting --exclude schedule /usr/share/gridengine/$clustername/common/accounting-*gz  $rsync_server::sge_account 
+#    endscript
+#}
+#
+#/var/spool/gridengine/default/qmaster/messages {
+#    compress
+#    missingok
+#    notifempty
+#    rotate 356
+#    weekly
+#}
+#
+#/var/spool/gridengine/*/messages {
+#    compress
+#    missingok
+#    notifempty
+#    rotate 356
+#    weekly
+#}
+#
+## If MONITOR=1 in the scheduler params
+#/usr/share/gridengine/antcluster/common/schedule {
+#    compress
+#    create 644 sgeadmin sgeadmin
+#    daily
+#    dateext
+#    rotate 356
+#}
+#
+## Don't compete with dbwriter.
+#/usr/share/gridengine/antcluster/common/reporting {
+#    compress
+#    create 644 sgeadmin sgeadmin
+#    daily
+#    dateext
+#    rotate 356
+#}
