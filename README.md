@@ -44,6 +44,8 @@ cp etc/sge_parser.cfg /etc/sge_parser/sge_parser.cfg
 cp usr/bin/sge_account_file_parser.pl /usr/bin/sge_account_file_parser.pl
 cp usr/sbin/sge_parse_install.pl /usr/sbin/sge_parse_install.pl
 chmod 600 /etc/sge_parser/sge_parser.cfg
+mkdir /var/log/sge_accounting/
+chown -R sgeaccounting.sgeaccounting /var/log/sge_accounting/
 ```
 
 /usr/share/sge is our http Documentroot. sgeaccounting must have write access to that directory. Feel free to use any other PATH, just change /etc/httpd/conf.d/accounting.conf
