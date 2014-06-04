@@ -29,7 +29,7 @@ You should not use root for running any part of this code. We use a UNIX account
 
 ## RPM
 
-yum install 
+yum install sge_account-$version-$release.x86_64.rpm
 
 ## From source (git)
 
