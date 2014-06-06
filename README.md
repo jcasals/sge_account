@@ -1,6 +1,8 @@
 SGE Account
 ===========
 
+I'm in the middle of a v 2.0 release. Please wait a couple of days because there will be some more improvements.
+
 # Description
 
 A Sun Grid Engine accounting system website done with PHP (using Twitter Bootstrap for UI), MySQL (with PHP ActiveRecord as ORM) and a Perlscript parser.
