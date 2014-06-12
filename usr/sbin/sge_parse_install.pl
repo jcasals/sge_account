@@ -1,5 +1,7 @@
 #!/usr/bin/perl -w
 
+# DDBB Engine is MyISAM, I've testes with InnoDB and I saw no major benefits. If you improve DDBB performance, please give us some feedback!
+
 use strict;
 
 use Config::Simple;
@@ -96,10 +98,8 @@ if ($dbh) {
 			mem_eff float(15,2) NOT NULL,
 			valid bool NOT NULL,
 			PRIMARY KEY (id_job),
-			KEY `group_accounting` (`date`,`ru_wallclock`,`groupname`,`exit_status`),
-			KEY `user_accounting` (`date`,`ru_wallclock`,`owner`,`groupname`,`exit_status`),
-			KEY `group_eff` (`date`,`mem_eff`,`time_resource_eff`,`groupname`,`exit_status`),
-			KEY `user_eff` (`date`,`mem_eff`,`time_resource_eff`,`owner`,`groupname`,`exit_status`)
+			KEY `user_accounting` (`date`,`ru_wallclock`,`owner`,`groupname`,`qname`,`exit_status`),
+			KEY `user_eff` (`date`,`mem_eff`,`time_resource_eff`,`requested_mem`,`requested_time`,`owner`,`groupname`,`exit_status`)
 			) ENGINE=MyISAM DEFAULT CHARSET=latin1");
 		for my $sql(@tables){
 			$sth = $ndbh->do($sql);
