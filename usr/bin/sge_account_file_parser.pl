@@ -74,7 +74,7 @@ foreach my $file_to_parse (@all_file_to_parse) {
 		my $sth1=$dbh->prepare("SELECT exists( SELECT file_name FROM files WHERE file_name='$MySQL_file_name')");
 		my @row_array=$dbh->selectrow_array($sth1); # (it returns 1 i the file has been already parsed 0 if not)
 		if ( $row_array[0] ) {
-			$log->info("The file $file_to_parse has benn already parsed");
+			$log->info("The file $file_to_parse has benn already parsed (Exists returned:  $row_array[0])");
 			$log->info("If you want to reparse it, run the MySQL command:\n mysql>  delete from files where file_name=$MySQL_file_name # And rerun this script");
 			print "The file $file_to_parse has benn already parsed\nIf you want to reparse it, run the MySQL command:\n mysql>  delete from files where file_name=$MySQL_file_name\nAnd rerun this script\n";
 		}else{
@@ -107,15 +107,16 @@ foreach my $file_to_parse (@all_file_to_parse) {
 				$_=$category;
 				my ($requested_time,$requested_mem,$unit) = /h_rt=(\d+).*h_vmem=(\d+|\d+\.\d+)(\w)/;
 		
-				if ( ($start_time != 0 ) &&  (defined($requested_time)) && (defined($requested_mem)) && ($slots != "0" ) && ($ru_wallclock != "0")) {
+				if ( ($start_time != 0 ) &&  (defined($requested_time)) && (defined($requested_mem)) && ($slots != "0" ) && ($ru_wallclock != "0") && ($unit =~ /M|G/) ) {
 					#Looks like valid entry ->starttime>0, requested reosurces defined and slots >0;
 					$valid='1';
-					# from bytes to GB
+					# from bytes to MB
 					$maxvmem = sprintf "%.2f",($maxvmem /= 1048576);
-					if ($unit eq "G") {
-						$requested_mem= ($requested_mem*$slots*1024);
-					}else{
-						$requested_mem = ($requested_mem*$slots*1024*1024);
+					# We operate with MB
+					if ($unit eq "M") {
+						$requested_mem= ($requested_mem*$slots);
+					}elsif($unit eq "G") {
+						$requested_mem = ($requested_mem*$slots*1024);
 					}
 					$time_eff=sprintf "%.2f",((((int $ru_utime)+(int $ru_stime))/$ru_wallclock)*100);
 					$time_resource_eff=sprintf "%.2f",(($ru_wallclock/$requested_time)*100);
@@ -129,14 +130,18 @@ foreach my $file_to_parse (@all_file_to_parse) {
 					$time_eff=0;
 					$time_resource_eff=0;
 					$mem_eff=0;
+					if ($unit !~ /M|G/) {
+						#What unit is this?	
+						$log->info("Job $id_job [$date] has a really strange unit...$unit");
+					}
 					if (defined($maxvmem)){
 						$maxvmem = sprintf "%.2f",($maxvmem /= 1048576);
 					}
 					if (defined($requested_mem) && ($slots != "0" )){
-						if ($unit eq "G") {
-							$requested_mem= ($requested_mem*$slots*1024);
+						if ($unit eq "M") {
+							$requested_mem= ($requested_mem*$slots);
 						}else{
-						$requested_mem = ($requested_mem*$slots*1024*1024);
+							$requested_mem = ($requested_mem*$slots*1024);
 						}
 					}
 							
