@@ -105,7 +105,9 @@ foreach my $file_to_parse (@all_file_to_parse) {
 					# empty requetsed resources (strange)
 					# very short job: ru_wallclock = 0
 				$_=$category;
-				my ($requested_time,$requested_mem,$unit) = /h_rt=(\d+).*h_vmem=(\d+|\d+\.\d+)(\w)/;
+				my ($requested_time,$requested_mem,$unit) = /h_rt=(\d+),h_vmem=(\d+\.?\d*)(\w)/;
+				print "$_\n";
+				print "$requested_time,$requested_mem,$unit\n";
 		
 				if ( ($start_time != 0 ) &&  (defined($requested_time)) && (defined($requested_mem)) && ($slots != "0" ) && ($ru_wallclock != "0") && ($unit =~ /M|G/) ) {
 					#Looks like valid entry ->starttime>0, requested reosurces defined and slots >0;
